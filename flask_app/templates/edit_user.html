@@ -1,0 +1,43 @@
+{% extends 'Base.html' %}
+{% block content %}
+
+<div class="container flexd">
+	<div class="flexr">
+		<form action="/update_user/{{art.id}}" method="POST" class="flexd justify-content-between">
+			<input type="hidden" name="id" value="{{art.id}}">
+		<div class="flexd">
+			<h2>Edit this user</h2>
+			
+			<p>First name: </p>
+				<input name="fname">
+				{% for message in get_flashed_messages(category_filter=['err_user_fname_count']) %}
+				<p class="err-msg">{{message}}</p>
+				{% endfor %}
+				{% for message in get_flashed_messages(category_filter=['err_user_fname_complexity']) %}
+				<p class="err-msg">{{message}}</p>
+				{% endfor %}
+
+				<p>Last name: </p><input name="lname">
+				{% for message in get_flashed_messages(category_filter=['err_user_lname_count']) %}
+				<p class="err-msg">{{message}}</p>
+				{% endfor %}
+				{% for message in get_flashed_messages(category_filter=['err_user_lname_complexity']) %}
+				<p class="err-msg">{{message}}</p>
+				{% endfor %}
+
+				<p>Email: </p><input name="email">
+				{% for message in get_flashed_messages(category_filter=['err_user_email']) %}
+				<p class="err-msg">{{message}}</p>
+				{% endfor %}
+				{% for message in get_flashed_messages(category_filter=['err_user_email_exists']) %}
+				<p class="err-msg">{{message}}</p>
+				{% endfor %}
+
+			<button class="shaded">Save</button>
+		</div>
+		</form>
+	</div>
+</div>
+
+
+{% endblock %}

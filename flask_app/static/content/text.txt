@@ -1,0 +1,52 @@
+# id, location, content, num_seen, date_seen, created_at, updated_at
+'1', 'heluva falls', 'I lost my virginity to a sassy sasquatch. Yes, she was hairy, tall, awkward and offensively aggressive in behavior and scent, but oh boy could she.....', '44', '2023-01-27 18:08:00', '2023-01-26 18:13:06', '2023-01-27 13:10:34'
+
+
+
+
+
+{% for sight in sightings %}
+		<div class="article flexr justify-content-between">
+			<div class="skeptics">Skeptics: x</div>
+			<div class="article-info flexd">
+				<div>{{sight.location if sight else ''}} - {{sight.date_seen if sight else ''}}</div>
+				<div>
+					<p>Reporter: {{sight.id if session['id'] != sight.user_id else 'You'}}</p>
+				</div>
+			</div>
+			<div class="flexr">
+				<div class="small_box"><a href="/view_sighting/{{sight.id}}" class="shaded">View</a></div>
+				<div class="small_box {{ 'visually-hidden' if session['id'] != sight.user_id else ''}}"><a
+						href="/edit_sighting/{{sight.id}}" class="shaded">Edit</a></div>
+				<div class="small_box {{ 'visually-hidden' if session['id'] != sight.user_id else ''}}"><a
+						href="/delete_sighting/{{sight.id}}" class="shaded">Delete</a></div>
+			</div>
+		</div>
+		{% endfor %}
+
+
+
+	{{users}} 1 user,
+		{{users.id}} user.id
+		{{users.fname}} fname
+		{{users.sightings}} list of sightings
+		{{users.sightings[0].user_id}}
+^current
+
+
+
+
+[{'id': 1, 'location': 'heluva falls', 'content': 'I lost my virginity to a sassy sasquatch. Yes, she was hairy, tall, awkward and offensively aggressive in behavior and scent, but oh boy could she.....', 'date_seen': datetime.datetime(2023, 1, 13, 15, 21), 'num_seen': 2, 'created_at': datetime.datetime(2023, 1, 28, 15, 22, 1), 'updated_at': datetime.datetime(2023, 1, 28, 15, 22, 1), 'user_id': 1, 'users.id': 1, 'fname': 'Daniel', 'lname': 'Lewis', 'email': 'dannylew12@yahoo.com', 'password': '$2b$12$tkSbEY.T0PcQyr0xnvTisu5ZQ2Orw1qrPUHYYg8xoXHffPdU6PrZK', 'users.created_at': datetime.datetime(2023, 1, 28, 15, 15, 32), 'users.updated_at': datetime.datetime(2023, 1, 28, 15, 15, 32)}, {'id': 2, 'location': 'vdbvdfb', 'content': 'fbxnngncxmnhmhcmhgmhcmchmghcmghmcjmyxjykkykyfkmffchmhmmtymmc', 'date_seen': datetime.datetime(2023, 1, 20, 15, 34), 'num_seen': 1, 'created_at': datetime.datetime(2023, 1, 28, 15, 34, 5), 'updated_at': datetime.datetime(2023, 1, 28, 15, 34, 5), 'user_id': 2, 'users.id': 2, 'fname': 'Daniel', 'lname': 'Lewis', 'email': 'bigredeyesproductions@gmail.com', 'password': '$2b$12$CTClaepgnzAINazCLrLapOIxVPcB0N6Od1g8Ai/UF6hzevBG3uyNK', 'users.created_at': datetime.datetime(2023, 1, 28, 15, 33, 17), 'users.updated_at': datetime.datetime(2023, 1, 28, 15, 33, 17)}, {'id': 3, 'location': 'hhtfhfh', 'content': 'unytmitydmiyimimdmydm,,d,i5snrsybsvrvtsvtsuytruus', 'date_seen': datetime.datetime(2023, 1, 14, 16, 20), 'num_seen': 6, 'created_at': datetime.datetime(2023, 1, 28, 16, 20, 21), 'updated_at': datetime.datetime(2023, 1, 28, 16, 20, 21), 'user_id': 1, 'users.id': 1, 'fname': 'Daniel', 'lname': 'Lewis', 'email': 'dannylew12@yahoo.com', 'password': '$2b$12$tkSbEY.T0PcQyr0xnvTisu5ZQ2Orw1qrPUHYYg8xoXHffPdU6PrZK', 'users.created_at': datetime.datetime(2023, 1, 28, 15, 15, 32), 'users.updated_at': datetime.datetime(2023, 1, 28, 15, 15, 32)}]
+
+
+
+{% for art in art_owned %}
+			<div class="article flexr justify-content-between">
+				<div class="article-info flexd">
+					<div><a href="/view_painting/{{art.id}}" class="shaded">{{art.title if art else ''}}</a> by {{art.user_id if art else ''}}</div>
+				</div>
+			</div>
+			{% endfor %}
+
+
+{{ 'visually-hidden' if session['id'] != art.user_id else ''}}
